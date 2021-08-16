@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    $( document ).ready(function() {
+    
+     loginaccess()
+
+        $.ajax({
+            type: "GET",
+            url:"http://api.covid19api.com/summary",
+            dataType:"json",
+            success: function (result, status, xhr){
+                //alert(result.Countries.length);
+                //alert(result.Countries[35].Country);
+                //alert(result.Countries[35].TotalConfirmed);
+                $("#apiresult").append("China Covid19 total confirmed: " + result.Countries[35].TotalConfirmed);
+                 //$("#apiresult").html(result.Global.Newconfirmed);
+                 for(i=0; i<result.Countries.length ; i++){
+                 //for(i=0, i<4 ; i++){
+                 //alert(result.Countries[i].Country);
+                 // $("#apiresult").append(result.Countries[i].CountryCode);
+                  //$("#apiresult").append("</n>");
+                 }
+             },
+             error: function (xhr, status, error){
+              alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+             }
+
+         })
+
+         $.ajax({
+            type: "GET",
+            url:"https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=en",
+            dataType:"json",
+            success: function (result, status, xhr){
+               
+                $("#weathericon").append("<img src='/assets/img/pic"+result.icon+".png'/>"); 
+          
+             },
+             error: function (xhr, status, error){
+              alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+             }
+
+         })
+     })
+
+     
+
+     function loginaccess(){
+         if (localStorage.getItem("loginstatus") !== "OK"){
+             window.location.href = "/login"
+         }
+     }
+
+
+
+    </script>
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Application</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <!-- Header -->
+        <header id="header">
+            <nav>
+                <div class="container">
+                    <div class="text-left">
+                        <a href="/" class="nav-brand text-dark">Serena Hotel VIP list</a>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="text-right">
+                        <div id="weathericon"></div>
+                    </div>
+
+                <div class="container">
+                    <div class="text-right">
+                        <div id="apiresult"></div>
+                    </div>
+                </div>
+
+                
+                </div>
+            </nav>
+        </header>
+    <!-- /Header -->

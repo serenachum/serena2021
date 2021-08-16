@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "axios": "^0.21.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "jquery": "^3.6.0",
+    "mongodb": "^3.6.9",
+    "mongoose": "^5.10.11",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.6"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "name": "A1project",
+  "description": "Vip list",
+  "version": "1.1.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "author": "Chum Wing Sze",
+  "license": "ISC"
+}
